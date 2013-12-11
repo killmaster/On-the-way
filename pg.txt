@@ -1,0 +1,2 @@
+inicial : bbc enterprise, quanto tempo falta para marcar as refeições para esse dia, botão para reservar já, quantas refeiçoes estão disponível
+segunda página: reserve agora, local para por o numero de estudante, o local de entrega, a que horas deseja (as horas estõa num menu scroll e tem horas tipo : 12h, 12h30, 13h, 13h30)

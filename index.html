@@ -1,0 +1,95 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>BBC Enterprise</title>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" media="all" href="default.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http:////code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="noty/packaged/jquery.noty.packaged.js"></script>
+    <script type="text/javascript">
+    	var reservas = 100;
+    	var d = new Date();
+    	var h = d.getHours();
+
+    	$(document).ready(function(){
+    	
+    	if(h>=10||reservas<=0){
+    		$("#message").html("As reservas começam às 00h00 e terminam às 10h00");
+    		$("#botao").html("<span>Volte amanhã");
+    	}
+    	
+    	$("#dialog-form").dialog({
+	    	autoOpen: false,
+	    	height: 300,
+	    	width: 350,
+	    	modal: true,
+	    	buttons: {
+		    	"Registar pedido": function(){
+		    		if(reservas>0){
+			    		reservas--;
+						$("#refeicoes").html(reservas.toString());
+						$("#container").noty({text: "Refeição registada com sucesso!",type: "success", layout: "top", maxVisible: 15});
+					}
+			    	$(this).dialog("close");
+		    	},
+		    	Cancel: function(){
+			    	$(this).dialog("close");
+		    	}
+	    	}
+    	});
+    	
+    	$("#botao").click(function(){
+    		if(h<=10){
+    			$("#dialog-form").dialog("open");
+    		}
+    	});
+    	
+    	});
+    </script>
+
+</head>
+<body>
+	<div id="container">
+	</div>
+    <section id="page">
+    	<header>
+    		<h1>On the way</h1>
+    		<nav class="clear">
+    			<ul>
+    				<li><a href="index.html">Início</a></li>
+    				<li><a href="demo.html">Contactos</a></li>
+    			</ul>
+    		</nav>
+    	</header>
+    <section id="reserva">
+    	<div class="line"></div>
+    	<p>Quantas refeições estão ainda disponiveis? Da última vez que vi eram...</p>
+    	<p id="refeicoes">100</p>
+    	<a href="#" id="botao" class="button">
+    		<span>Reserva já!</span>
+    	</a>
+		<div id="dialog-form" title="Reservar">
+		  <p class="validateTips">Todos os campos são obrigatórios.</p>
+		 
+		  <form id="reservform">
+		  <fieldset>
+		    <label for="number">Número de estudante</label>
+		    <input type="text" name="number" id="number" class="text ui-widget-content ui-corner-all">
+		    <label for="local">Local de entrega</label>
+		    <input type="text" name="local" id="local" value="bif" class="text ui-widget-content ui-corner-all">
+		    <label for="hora">Hora de entrega</label>
+		    <input type="text" name="hora" id="hora" value="12h00" class="text ui-widget-content ui-corner-all">
+		  </fieldset>
+		  </form>
+		</div>
+    	</br>
+    	</br>
+    	<p id="message">Pode reservar até às 10 da manhã!</p>
+    	<footer>
+    		<div class="line"></div>
+    		<p>Copyright - BBC Enterprise 2013</p>
+</body>
+</html>
+
